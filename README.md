@@ -1,17 +1,8 @@
-# Weather-ApplicationApp
-A user friendly Weather Application to show the current weather status of a User Location.
+# React + Vite
 
-# Usage
-You will get Your Live GeoLocation Weather Data 
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
+Currently, two official plugins are available:
 
-
-# Running the project
-
-For running this project first get into your folder by cd Weather-ApplicationApp and then you have to run the below code
-
-To install our application npm install  
-
-After running the above code then 
-
-Run npm start
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh

@@ -5,6 +5,7 @@ import { FaNewspaper } from "react-icons/fa6";
 import { FaCloudSun } from "react-icons/fa";
 import { NavLink } from "react-router";
 import { MdLogout } from "react-icons/md";
+import { useSelector } from "react-redux";
 
 const navbar_elements = {
   header: [
@@ -36,9 +37,9 @@ const navbar_elements = {
 };
 
 const Navbar = () => {
-  
+  const isSidebarOpen = useSelector((state) => state.sidebar.isOpen);
   return (
-    <aside className="w-72 bg-blue-700 h-screen py-2 flex flex-col">
+    <aside className={`w-72 ${isSidebarOpen? "w-72": "w-16 items-center hidden"} bg-blue-700 h-screen  py-2 flex flex-col`}>
       {Object.entries(navbar_elements).map(([section, elements]) => (
         <ul
           key={section}
@@ -66,7 +67,7 @@ const Navbar = () => {
                       })
                     : element.icon}
                   <span
-                    className={`${section === "header" ? "text-xl font-bold" : ""}`}
+                    className={`${section === "header" ? "text-xl font-bold" : ""} ${isSidebarOpen? "" : "hidden"}`}
                   >
                     {element.tabName}
                   </span>

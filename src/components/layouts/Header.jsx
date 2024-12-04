@@ -2,7 +2,7 @@ import React from "react";
 import { GoSidebarCollapse, GoSidebarExpand } from "react-icons/go";
 import { FaCloudSun } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleSidebar } from "../redux/slices/sidebar";
+import { toggleSidebar } from "../../redux/slices/sidebar";
 
 const Header = () => {
   const isSidebarOpen = useSelector((state) => state.sidebar.isOpen);

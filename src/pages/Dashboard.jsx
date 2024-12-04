@@ -1,4 +1,3 @@
-import React from "react";
 import CurrentWeather from "../components/weather/CurrentWeather";
 import WeatherMap from "../components/weather/WeatherMap";
 import TopCities from "../components/weather/TopCities";
@@ -9,7 +8,7 @@ const Dashboard = () => {
       <div className="grid grid-cols-12 gap-2">
         <CurrentWeather />
         <WeatherMap />
-        <TopCities/>
+        <TopCities />
       </div>
     </div>
   );

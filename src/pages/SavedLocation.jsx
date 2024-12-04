@@ -1,9 +1,7 @@
-import React from 'react'
-
 const SavedLocation = () => {
   return (
-    <div className='min-h-[calc(100vh-145px)] bg-zinc-700'>SavedLocation</div>
-  )
-}
+    <div className="min-h-[calc(100vh-145px)] bg-zinc-700">SavedLocation</div>
+  );
+};
 
-export default SavedLocation
+export default SavedLocation;

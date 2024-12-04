@@ -1,27 +1,27 @@
 import axios from "axios";
 
 class ApiService {
-  static #API_URL = 'http://localhost:5000/api';
+  static #API_URL = "http://localhost:5000/api";
 
   static async getWeatherByCity(cityName) {
     try {
       const response = await axios.get(`${this.#API_URL}/weather`, {
-        params: { city: cityName }
+        params: { city: cityName },
       });
       return response.data;
     } catch (error) {
-      throw error.response?.data?.message || 'Failed to fetch weather data';
+      throw error.response?.data?.message || "Failed to fetch weather data";
     }
   }
 
   static async getWeatherByCoordinates(lat, lon) {
     try {
       const response = await axios.get(`${this.#API_URL}/weather`, {
-        params: { lat, lon }
+        params: { lat, lon },
       });
       return response.data;
     } catch (error) {
-      throw error.response?.data?.message || 'Failed to fetch weather data';
+      throw error.response?.data?.message || "Failed to fetch weather data";
     }
   }
 
@@ -32,13 +32,16 @@ class ApiService {
           async (position) => {
             try {
               const { latitude, longitude } = position.coords;
-              const data = await this.getWeatherByCoordinates(latitude, longitude);
+              const data = await this.getWeatherByCoordinates(
+                latitude,
+                longitude
+              );
               resolve(data);
             } catch (error) {
               reject(error);
             }
           },
-          (error) => reject("Location access denied")
+          () => reject("Location access denied")
         );
       } else {
         reject("Geolocation not supported");

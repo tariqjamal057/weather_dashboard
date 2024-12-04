@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router";
+import PropTypes from "prop-types";
 
 const NavItem = ({ element, section, isSidebarOpen }) => {
   return (
@@ -21,6 +22,16 @@ const NavItem = ({ element, section, isSidebarOpen }) => {
       </NavLink>
     </li>
   );
+};
+
+NavItem.propTypes = {
+  element: PropTypes.shape({
+    url: PropTypes.string.isRequired,
+    icon: PropTypes.element.isRequired,
+    tabName: PropTypes.string.isRequired,
+  }).isRequired,
+  section: PropTypes.string.isRequired,
+  isSidebarOpen: PropTypes.bool.isRequired,
 };
 
 export default NavItem;

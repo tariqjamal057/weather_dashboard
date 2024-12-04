@@ -6,14 +6,17 @@ const initialState = {
     try {
       const storedData = localStorage.getItem("searchedCities");
       if (!storedData) return [];
-      
-      const decryptedData = CryptoJS.AES.decrypt(storedData, "yourSecretKey").toString(CryptoJS.enc.Utf8);
+
+      const decryptedData = CryptoJS.AES.decrypt(
+        storedData,
+        "yourSecretKey"
+      ).toString(CryptoJS.enc.Utf8);
       return JSON.parse(decryptedData) || [];
     } catch (error) {
       console.error("Error loading cities from localStorage:", error);
       return [];
     }
-  })()
+  })(),
 };
 
 const citiesSlice = createSlice({

@@ -1,7 +1,5 @@
-import React from "react";
 import { MdDashboard, MdLogout } from "react-icons/md";
 import { FaNewspaper, FaCloudSun } from "react-icons/fa6";
-import { NavLink } from "react-router";
 import { useSelector } from "react-redux";
 import NavItem from "./NavItem";
 
@@ -19,7 +17,7 @@ const Navbar = () => {
 
   return (
     <aside
-    className={`transition-all duration-300 ease-in-out flex-shrink-0
+      className={`transition-all duration-300 ease-in-out flex-shrink-0
       ${isSidebarOpen ? "w-72" : "w-16"} bg-blue-700 min-h-screen py-2 flex flex-col`}
     >
       {Object.entries(NAVBAR_ELEMENTS).map(([section, elements]) => (

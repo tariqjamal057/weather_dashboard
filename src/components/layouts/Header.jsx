@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { GoSidebarCollapse, GoSidebarExpand } from "react-icons/go";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSidebar } from "../../redux/slices/sidebar";

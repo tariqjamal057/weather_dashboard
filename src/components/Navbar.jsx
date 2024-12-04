@@ -39,7 +39,7 @@ const Navbar = () => {
   return (
     <aside
     className={`transition-all duration-300 ease-in-out flex-shrink-0
-      ${isSidebarOpen ? "w-72" : "w-16"} bg-blue-700 h-screen py-2 flex flex-col`}
+      ${isSidebarOpen ? "w-72" : "w-16"} bg-blue-700 min-h-screen py-2 flex flex-col`}
     >
       {Object.entries(NAVBAR_ELEMENTS).map(([section, elements]) => (
         <ul

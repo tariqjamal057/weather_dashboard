@@ -1,17 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { GoSidebarCollapse, GoSidebarExpand } from "react-icons/go";
-import { FaCloudSun } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSidebar } from "../../redux/slices/sidebar";
+import { addCity } from "../../redux/slices/cities";
+import { addWeatherData } from "../../redux/slices/weather/weather";
+import ApiService from "../../api/weather";
 
 const Header = () => {
   const isSidebarOpen = useSelector((state) => state.sidebar.isOpen);
   const dispatch = useDispatch();
 
+  const [city, setCity] = useState("");
+
+  const handleSearch = async () => {
+    if (city.trim() !== "") {
+      try {
+        const data = await ApiService.getWeatherByCity(city);
+        dispatch(addWeatherData(data));
+        dispatch(addCity(data.name));
+      } catch (err) {
+        alert(err);
+      }
+    }
+  };
+
   return (
     <header className="flex justify-between items-center w-full rounded py-2 pb-2">
       <div className="flex items-center">
-        <button 
+        <button
           onClick={() => dispatch(toggleSidebar())}
           className="transform transition-transform duration-300 hover:scale-110"
         >
@@ -25,8 +41,15 @@ const Header = () => {
         </button>
         <input
           type="search"
-          placeholder="Search..."
-          className="ms-1 sm:ms-6 bg-white outline-none text-sm p-2 rounded lg:w-72"
+          placeholder="Enter city name..."
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleSearch();
+            }
+          }}
+          className="ms-6 bg-white outline-none text-sm p-2 rounded lg:w-72"
         />
       </div>
       <div className="bg-blue-700 border border-neutral-100 rounded-full w-10 h-10 flex justify-center items-center text-white">

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useSelector } from "react-redux";
 import { FaEye } from "react-icons/fa";
 import ApiService from "../../api/weather";

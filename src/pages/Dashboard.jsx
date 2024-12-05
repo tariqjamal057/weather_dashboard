@@ -1,6 +1,7 @@
 import CurrentWeather from "../components/weather/CurrentWeather";
 import WeatherMap from "../components/weather/WeatherMap";
 import TopCities from "../components/weather/TopCities";
+import UnderConstruction from "../components/UnderConstruction";
 
 const Dashboard = () => {
   return (
@@ -9,6 +10,7 @@ const Dashboard = () => {
         <CurrentWeather />
         <WeatherMap />
         <TopCities />
+        <UnderConstruction botton_container={true} />
       </div>
     </div>
   );

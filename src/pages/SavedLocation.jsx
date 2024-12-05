@@ -1,6 +1,10 @@
+import UnderConstruction from "../components/UnderConstruction";
+
 const SavedLocation = () => {
   return (
-    <div className="min-h-[calc(100vh-145px)] bg-zinc-700">SavedLocation</div>
+    <>
+      <UnderConstruction botton_container={false} />
+    </>
   );
 };
 

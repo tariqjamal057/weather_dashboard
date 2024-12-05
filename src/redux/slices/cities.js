@@ -9,7 +9,7 @@ const initialState = {
 
       const decryptedData = CryptoJS.AES.decrypt(
         storedData,
-        "yourSecretKey"
+        import.meta.env.VITE_CRYTOJS_SECRET_CODE
       ).toString(CryptoJS.enc.Utf8);
       return JSON.parse(decryptedData) || [];
     } catch (error) {
@@ -30,7 +30,7 @@ const citiesSlice = createSlice({
         try {
           const encryptedData = CryptoJS.AES.encrypt(
             JSON.stringify(state.cities),
-            "yourSecretKey"
+            import.meta.env.VITE_CRYTOJS_SECRET_CODE
           ).toString();
           localStorage.setItem("searchedCities", encryptedData);
         } catch (error) {

@@ -82,7 +82,7 @@ const CurrentWeather = () => {
               height={80}
             />
             <div className="flex flex-col justify-between items-start">
-              <span className="text-5xl font-bold">
+              <span className="text-4xl lg:text-3xl font-bold">
                 {weatherData.main.temp}°C
               </span>
               <p>

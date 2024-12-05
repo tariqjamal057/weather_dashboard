@@ -1,11 +1,27 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { FaEye } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { FaArrowRight } from "react-icons/fa";
 import ApiService from "../../api/weather";
+import { addWeatherData } from "../../redux/slices/weather/weather";
 
 const TopCities = () => {
   const cities = useSelector((state) => state.cities.cities);
+  const weatherData = useSelector((state) => state.weather.weather);
+  console.log("weather ", weatherData);
+
   const [topCityData, setTopCityData] = useState([]);
+  const dispatch = useDispatch();
+  console.log("top cory ", topCityData[0]);
+  const handleCityWeather = async (city) => {
+    if (city.trim() !== "") {
+      try {
+        const data = await ApiService.getWeatherByCity(city);
+        dispatch(addWeatherData(data));
+      } catch (err) {
+        alert(err);
+      }
+    }
+  };
 
   useEffect(() => {
     const fetchWeatherData = async () => {
@@ -47,9 +63,23 @@ const TopCities = () => {
                   </td>
                   <td className="px-2 py-2">{data.name}</td>
                   <td className="px-2 py-2">{data.weather[0].main}</td>
-                  <td>
-                    <button data-tooltip-target="tooltip-default">
-                      <FaEye />
+                  <td
+                    className={`${!weatherData || weatherData.id === data.id} ? "cursor-not-allowed": ""}`}
+                  >
+                    <button
+                      onClick={() => {
+                        console.log("inside the");
+                        console.log(weatherData);
+                        if (weatherData && weatherData.id !== data.id) {
+                          handleCityWeather(data.name);
+                        } else if (!weatherData) {
+                          console.log("elf");
+                          handleCityWeather(data.name);
+                        }
+                      }}
+                      className="bg-blue-700 hover:bg-blue-800 transition-colors duration-200 p-2 rounded text-white hover:text-gray-100"
+                    >
+                      <FaArrowRight />
                     </button>
                   </td>
                 </tr>

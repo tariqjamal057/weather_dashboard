@@ -43,7 +43,7 @@ const TopCities = () => {
   }, [cities]);
 
   return (
-    <div className="relative min-h-42 lg:min-h-[calc((100vh-145px)/2.15)] bg-white rounded-lg col-span-12 lg:col-span-3 lg:order-2 overflow-hidden flex justify-start sm:col-start-7 sm:col-end-13 px-2 py-2 lg:py-0 lg:px-4 text-blue-700">
+    <div className="relative min-h-42 lg:min-h-[calc((100vh-145px)/2.15)] bg-white rounded-lg col-span-12 lg:col-span-3 lg:order-2 overflow-hidden flex justify-start sm:col-start-7 sm:col-end-13 p-4 text-blue-700">
       <div className="relative flex flex-col justify-between w-full">
         <div className="">
           <h2 className="text-base font-semibold mb-2">Popular Cities</h2>

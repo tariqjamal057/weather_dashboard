@@ -28,17 +28,20 @@ app.use(express.json());
 app.get("/api/weather", async (req, res) => {
   try {
     const { city, lat, lon } = req.query;
-    let url;
+
+    let query_param;
+
     if (city) {
-      url = `${process.env.WEATHER_API_BASE_URL}/weather?q=${city}&appid=${process.env.OPEN_WEATHER_API_KEY}&units=metric`;
+      query_param = `q=${city}`;
     } else if (lat && lon) {
-      url = `${process.env.WEATHER_API_BASE_URL}/weather?lat=${lat}&lon=${lon}&appid=${process.env.OPEN_WEATHER_API_KEY}&units=metric`;
+      query_param = `lat=${lat}&lon=${lon}`;
+
     } else {
       return res
         .status(400)
         .json({ message: "City name or coordinates required" });
     }
-
+    const url = `${process.env.WEATHER_API_BASE_URL}/weather?${query_param}&appid=${process.env.OPEN_WEATHER_API_KEY}&units=metric`;
     const response = await axios.get(url);
     res.json(response.data);
   } catch (error) {
@@ -48,6 +51,6 @@ app.get("/api/weather", async (req, res) => {
   }
 });
 
-app.listen(PORT, '0.0.0.0', () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on http://0.0.0.0:${PORT}`);
 });

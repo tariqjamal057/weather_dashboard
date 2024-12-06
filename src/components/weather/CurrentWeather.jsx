@@ -66,13 +66,12 @@ const CurrentWeather = () => {
         </div>
       ) : (
         <div className="relative flex flex-col justify-between w-full p-4">
-          <div>
-            <h2 className="text-base text-black font-semibold">
-              Current Weather
-            </h2>
-            <span className="text-sm capitalize">
-              {weatherData.name} {time}
-            </span>
+          <div className="flex justify-between items-start">
+            <h2 className="text-base text-black font-semibold">Today</h2>
+            <div className="flex flex-col justify-center items-start">
+              <span className="text-sm capitalize">{weatherData.name}</span>
+              <span className="text-sm capitalize">{time}</span>
+            </div>
           </div>
           <div className="flex justify-between items-center my-3">
             <img

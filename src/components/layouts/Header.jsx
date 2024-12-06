@@ -2,7 +2,7 @@ import { useState } from "react";
 import { GoSidebarCollapse, GoSidebarExpand } from "react-icons/go";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSidebar } from "../../redux/slices/sidebar";
-import { addCity } from "../../redux/slices/cities";
+import { addCity } from "../../redux/slices/weather/cities";
 import { addWeatherData } from "../../redux/slices/weather/weather";
 import ApiService from "../../api/weather";
 

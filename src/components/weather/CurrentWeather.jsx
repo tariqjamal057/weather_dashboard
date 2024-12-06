@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { MdMyLocation } from "react-icons/md";
 import { useDispatch } from "react-redux";
-import { addCity } from "../../redux/slices/cities";
+import { addCity } from "../../redux/slices/weather/cities";
 import { addWeatherData } from "../../redux/slices/weather/weather";
 import ApiService from "../../api/weather";
 

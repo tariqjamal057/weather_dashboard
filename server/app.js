@@ -35,7 +35,6 @@ app.get("/api/weather", async (req, res) => {
       query_param = `q=${city}`;
     } else if (lat && lon) {
       query_param = `lat=${lat}&lon=${lon}`;
-
     } else {
       return res
         .status(400)
@@ -47,6 +46,20 @@ app.get("/api/weather", async (req, res) => {
   } catch (error) {
     res.status(error.response?.status || 500).json({
       message: error.response?.data?.message || "Failed to fetch weather data",
+    });
+  }
+});
+
+// Forecast API endpoint
+app.get("/api/forecast", async (req, res) => {
+  try {
+    const { lat, lon } = req.query;
+    const url = `${process.env.WEATHER_API_BASE_URL}/forecast?lat=${lat}&lon=${lon}&appid=${process.env.OPEN_WEATHER_API_KEY}&units=metric`;
+    const response = await axios.get(url);
+    res.json(response.data);
+  } catch (error) {
+    res.status(error.response?.status || 500).json({
+      message: error.response?.data?.message || "Failed to fetch forecast data",
     });
   }
 });

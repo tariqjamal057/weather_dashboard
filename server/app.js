@@ -11,7 +11,7 @@ const __dirname = path.dirname(__filename);
 dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 // CORS configuration
 const corsOptions = {
@@ -29,7 +29,6 @@ app.get("/api/weather", async (req, res) => {
   try {
     const { city, lat, lon } = req.query;
     let url;
-
     if (city) {
       url = `${process.env.WEATHER_API_BASE_URL}/weather?q=${city}&appid=${process.env.OPEN_WEATHER_API_KEY}&units=metric`;
     } else if (lat && lon) {
@@ -49,6 +48,6 @@ app.get("/api/weather", async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on http://0.0.0.0:${PORT}`);
 });

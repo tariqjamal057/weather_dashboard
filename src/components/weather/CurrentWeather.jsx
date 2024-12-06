@@ -5,6 +5,8 @@ import { useDispatch } from "react-redux";
 import { addCity } from "../../redux/slices/weather/cities";
 import { addWeatherData } from "../../redux/slices/weather/weather";
 import WeatherApiService from "../../api/weather";
+import ForecastApiService from "../../api/forecast";
+import { addforecastData } from "../../redux/slices/weather/forecast";
 
 const CurrentWeather = () => {
   const [time, setTime] = useState();
@@ -14,6 +16,8 @@ const CurrentWeather = () => {
   const handleLocationWeather = async () => {
     try {
       const data = await WeatherApiService.getCurrentLocationWeather();
+      const forecastData = await ForecastApiService.getForcastByCoordinates(data.coord.lat, data.coord.lon)
+      dispatch(addforecastData(forecastData))
       dispatch(addWeatherData(data));
       dispatch(addCity(data.name));
     } catch (error) {

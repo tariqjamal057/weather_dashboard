@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { FaArrowRight } from "react-icons/fa";
 import WeatherApiService from "../../api/weather";
 import { addWeatherData } from "../../redux/slices/weather/weather";
+import ForecastApiService from "../../api/forecast";
+import { addforecastData } from "../../redux/slices/weather/forecast";
 
 const TopCities = () => {
   const cities = useSelector((state) => state.cities.cities);
@@ -14,6 +16,8 @@ const TopCities = () => {
     if (city.trim() !== "") {
       try {
         const data = await WeatherApiService.getWeatherByCity(city);
+        const forecastData = await ForecastApiService.getForcastByCoordinates(data.coord.lat, data.coord.lon)
+        dispatch(addforecastData(forecastData))
         dispatch(addWeatherData(data));
       } catch (err) {
         alert(err);

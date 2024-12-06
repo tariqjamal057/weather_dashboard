@@ -4,7 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleSidebar } from "../../redux/slices/sidebar";
 import { addCity } from "../../redux/slices/weather/cities";
 import { addWeatherData } from "../../redux/slices/weather/weather";
-import ApiService from "../../api/weather";
+import WeatherApiService from "../../api/weather";
+import { addforecastData } from "../../redux/slices/weather/forecast";
+import ForecastApiService from "../../api/forecast";
 
 const Header = () => {
   const isSidebarOpen = useSelector((state) => state.sidebar.isOpen);
@@ -15,7 +17,9 @@ const Header = () => {
   const handleSearch = async () => {
     if (city.trim() !== "") {
       try {
-        const data = await ApiService.getWeatherByCity(city);
+        const data = await WeatherApiService.getWeatherByCity(city);
+        const forecastData = await ForecastApiService.getForcastByCoordinates(data.coord.lat, data.coord.lon)
+        dispatch(addforecastData(forecastData))
         dispatch(addWeatherData(data));
         dispatch(addCity(data.name));
       } catch (err) {

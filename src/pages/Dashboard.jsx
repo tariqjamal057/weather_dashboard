@@ -1,8 +1,9 @@
 import CurrentWeather from "../components/weather/CurrentWeather";
 import WeatherMap from "../components/weather/WeatherMap";
 import TopCities from "../components/weather/TopCities";
-import UnderConstruction from "../components/UnderConstruction";
 import useDocumentTitle from "../components/layouts/useDocumentTitle";
+import RecentForcast from "../components/forecast/RecentForecast";
+import SunriseSunsetChart from "../components/forecast/SunriseSunsetChart";
 
 const Dashboard = () => {
   useDocumentTitle("Weather App - Dashboard")
@@ -12,7 +13,8 @@ const Dashboard = () => {
         <CurrentWeather />
         <WeatherMap />
         <TopCities />
-        <UnderConstruction botton_container={true} />
+        <SunriseSunsetChart/>
+        <RecentForcast/>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 class ApiService {
-  static #API_URL = "http://localhost:5000/api";
+  static #API_URL = import.meta.env.VITE_API_BACKEND_URL;
 
   static async getWeatherByCity(cityName) {
     try {

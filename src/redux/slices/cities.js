@@ -13,7 +13,7 @@ const initialState = {
       ).toString(CryptoJS.enc.Utf8);
       return JSON.parse(decryptedData) || [];
     } catch (error) {
-      console.error("Error loading cities from localStorage:", error);
+      alert("Error loading cities from localStorage:", error);
       return [];
     }
   })(),
@@ -34,7 +34,7 @@ const citiesSlice = createSlice({
           ).toString();
           localStorage.setItem("searchedCities", encryptedData);
         } catch (error) {
-          console.error("Error saving cities to localStorage:", error);
+          alert("Error saving cities to localStorage:", error);
         }
       }
     },

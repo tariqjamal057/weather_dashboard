@@ -7,11 +7,9 @@ import { addWeatherData } from "../../redux/slices/weather/weather";
 const TopCities = () => {
   const cities = useSelector((state) => state.cities.cities);
   const weatherData = useSelector((state) => state.weather.weather);
-  console.log("weather ", weatherData);
 
   const [topCityData, setTopCityData] = useState([]);
   const dispatch = useDispatch();
-  console.log("top cory ", topCityData[0]);
   const handleCityWeather = async (city) => {
     if (city.trim() !== "") {
       try {
@@ -35,7 +33,7 @@ const TopCities = () => {
           setTopCityData(results);
         }
       } catch (error) {
-        console.error("Error fetching weather data: ", error);
+        alert("Error fetching weather data: ", error);
       }
     };
 
@@ -68,12 +66,9 @@ const TopCities = () => {
                   >
                     <button
                       onClick={() => {
-                        console.log("inside the");
-                        console.log(weatherData);
                         if (weatherData && weatherData.id !== data.id) {
                           handleCityWeather(data.name);
                         } else if (!weatherData) {
-                          console.log("elf");
                           handleCityWeather(data.name);
                         }
                       }}

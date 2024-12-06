@@ -4,7 +4,7 @@ import { MdMyLocation } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { addCity } from "../../redux/slices/weather/cities";
 import { addWeatherData } from "../../redux/slices/weather/weather";
-import ApiService from "../../api/weather";
+import WeatherApiService from "../../api/weather";
 
 const CurrentWeather = () => {
   const [time, setTime] = useState();
@@ -13,7 +13,7 @@ const CurrentWeather = () => {
 
   const handleLocationWeather = async () => {
     try {
-      const data = await ApiService.getCurrentLocationWeather();
+      const data = await WeatherApiService.getCurrentLocationWeather();
       dispatch(addWeatherData(data));
       dispatch(addCity(data.name));
     } catch (error) {

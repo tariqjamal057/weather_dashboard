@@ -1,6 +1,6 @@
 import axios from "axios";
 
-class ApiService {
+class WeatherApiService {
   static #API_URL = import.meta.env.VITE_API_BACKEND_URL;
 
   static async getWeatherByCity(cityName) {
@@ -50,4 +50,4 @@ class ApiService {
   }
 }
 
-export default ApiService;
+export default WeatherApiService;

@@ -4,10 +4,10 @@ import { formatDateTime } from "../../utils";
 const RecentForcast = () => {
   const forecastData = useSelector((state) => state.forecast.forecast);
 
-  
-
   return (
-    <div className={`relative min-h-42 lg:min-h-[calc((100vh-145px)/2.4)] bg-white rounded-lg col-span-12 lg:col-start-3 lg:col-end-13 lg:order-3 overflow-hidden flex justify-start sm:col-start-1 sm:col-end-7 pt-4 ${forecastData? "pb-0": "pb-4"} text-blue-700 order-3`}>
+    <div
+      className={`relative min-h-42 lg:min-h-[calc((100vh-145px)/2.4)] bg-white rounded-lg col-span-12 lg:col-start-3 lg:col-end-13 lg:order-3 overflow-hidden flex justify-start sm:col-start-1 sm:col-end-7 pt-4 ${forecastData ? "pb-0" : "pb-4"} text-blue-700 order-3`}
+    >
       <div className="relative flex flex-col justify-between w-full">
         {forecastData ? (
           <>

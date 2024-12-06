@@ -16,8 +16,11 @@ const CurrentWeather = () => {
   const handleLocationWeather = async () => {
     try {
       const data = await WeatherApiService.getCurrentLocationWeather();
-      const forecastData = await ForecastApiService.getForcastByCoordinates(data.coord.lat, data.coord.lon)
-      dispatch(addforecastData(forecastData))
+      const forecastData = await ForecastApiService.getForcastByCoordinates(
+        data.coord.lat,
+        data.coord.lon
+      );
+      dispatch(addforecastData(forecastData));
       dispatch(addWeatherData(data));
       dispatch(addCity(data.name));
     } catch (error) {

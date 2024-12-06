@@ -8,7 +8,7 @@ const NavItem = ({ element, section, isSidebarOpen }) => {
       <NavLink to={element.url}>
         <div
           className={`flex rounded-md p-2 cursor-pointer text-sm items-center gap-x-4 
-        ${section === "header" ? "mb-2" : "hover:bg-white hover:text-blue-700 transition-colors duration-300"} ${section == "footer"? "text-blue-700 bg-white hover:bg-slate-100" : ""}`}
+        ${section === "header" ? "mb-2" : "hover:bg-white hover:text-blue-700 transition-colors duration-300"} ${section == "footer" ? "text-blue-700 bg-white hover:bg-slate-100" : ""}`}
         >
           {section === "header"
             ? React.cloneElement(element.icon, { size: 32 })

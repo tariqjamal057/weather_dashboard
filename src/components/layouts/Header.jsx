@@ -18,8 +18,11 @@ const Header = () => {
     if (city.trim() !== "") {
       try {
         const data = await WeatherApiService.getWeatherByCity(city);
-        const forecastData = await ForecastApiService.getForcastByCoordinates(data.coord.lat, data.coord.lon)
-        dispatch(addforecastData(forecastData))
+        const forecastData = await ForecastApiService.getForcastByCoordinates(
+          data.coord.lat,
+          data.coord.lon
+        );
+        dispatch(addforecastData(forecastData));
         dispatch(addWeatherData(data));
         dispatch(addCity(data.name));
       } catch (err) {

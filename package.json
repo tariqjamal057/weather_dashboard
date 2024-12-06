@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "format": "prettier --write 'src/**/*.{js,jsx,json,css,scss,md}'",
+    "format": "prettier --write 'src/**/*.{js,jsx,json,css,scss,md}' && eslint --fix",
     "prepare": "husky"
   },
   "dependencies": {
@@ -48,8 +48,8 @@
     "vite": "^6.0.1"
   },
   "lint-staged": {
-    "*.js": "eslint --fix",
-    "*.jsx": "eslint --fix",
+    "*.js": "npm run format",
+    "*.jsx": "npm run format",
     "*.json": "prettier --write",
     "*.css": "prettier --write",
     "*.scss": "prettier --write"

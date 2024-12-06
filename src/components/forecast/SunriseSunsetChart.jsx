@@ -6,43 +6,32 @@ import {
   CategoryScale,
   LinearScale,
   Tooltip,
-  Legend
-} from 'chart.js';
+  Legend,
+} from "chart.js";
+import { calculateDaylight } from "../../utils";
 
-ChartJS.register(
-  ArcElement,
-  CategoryScale,
-  LinearScale,
-  Tooltip,
-  Legend
-);
+ChartJS.register(ArcElement, CategoryScale, LinearScale, Tooltip, Legend);
 
 const SunriseSunsetChart = () => {
   const forecastData = useSelector((state) => state.forecast.forecast);
 
-  const calculateDaylight = (sunrise, sunset) => {
-    const sunriseTime = sunrise * 1000;
-    const sunsetTime = sunset * 1000;
-    const daylightMs = sunsetTime - sunriseTime;
-    const nightMs = 24 * 60 * 60 * 1000 - daylightMs;
-    
-    return {
-      daylight: daylightMs / (60 * 60 * 1000), // Convert to hours
-      night: nightMs / (60 * 60 * 1000)
-    };
-  };
-
   const chartData = {
-    labels: ['Daylight Hours', 'Night Hours'],
+    labels: ["Daylight Hours", "Night Hours"],
     datasets: [
       {
-        data: forecastData ? 
-          [
-            calculateDaylight(forecastData.city.sunrise, forecastData.city.sunset).daylight,
-            calculateDaylight(forecastData.city.sunrise, forecastData.city.sunset).night
-          ] : 
-          [0, 0],
-        backgroundColor: ['#eff6ff', '#1d4ed8'],
+        data: forecastData
+          ? [
+              calculateDaylight(
+                forecastData.city.sunrise,
+                forecastData.city.sunset
+              ).daylight,
+              calculateDaylight(
+                forecastData.city.sunrise,
+                forecastData.city.sunset
+              ).night,
+            ]
+          : [0, 0],
+        backgroundColor: ["#eff6ff", "#1d4ed8"],
         borderWidth: 1,
       },
     ],
@@ -54,13 +43,13 @@ const SunriseSunsetChart = () => {
     circumference: 180,
     plugins: {
       legend: {
-        position: 'top',
+        position: "top",
       },
       tooltip: {
         callbacks: {
-          label: (context) => `${context.formattedValue} hours`
-        }
-      }
+          label: (context) => `${context.formattedValue} hours`,
+        },
+      },
     },
   };
 
@@ -71,8 +60,16 @@ const SunriseSunsetChart = () => {
           <>
             <Doughnut data={chartData} options={options} />
             <div className="mt-4 text-center">
-              <p className="font-medium">Sunrise: {new Date(forecastData.city.sunrise * 1000).toLocaleTimeString()}</p>
-              <p className="font-medium">Sunset: {new Date(forecastData.city.sunset * 1000).toLocaleTimeString()}</p>
+              <p className="font-medium">
+                Sunrise:{" "}
+                {new Date(
+                  forecastData.city.sunrise * 1000
+                ).toLocaleTimeString()}
+              </p>
+              <p className="font-medium">
+                Sunset:{" "}
+                {new Date(forecastData.city.sunset * 1000).toLocaleTimeString()}
+              </p>
             </div>
           </>
         ) : (

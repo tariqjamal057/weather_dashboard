@@ -91,7 +91,7 @@ const TopCities = () => {
                 </>
               ) : (
                 <>
-                <p className="text-black">No data available</p>
+                  <p className="text-black">No data available</p>
                 </>
               )}
             </tbody>

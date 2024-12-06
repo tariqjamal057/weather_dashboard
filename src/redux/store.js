@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import sidebarReducer from "./slices/sidebar";
-import citiesSlice from "./slices/cities";
+import citiesSlice from "./slices/weather/cities";
 import weatherReducer from "./slices/weather/weather";
 
 export const store = configureStore({

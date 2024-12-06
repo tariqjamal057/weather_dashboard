@@ -16,8 +16,11 @@ const TopCities = () => {
     if (city.trim() !== "") {
       try {
         const data = await WeatherApiService.getWeatherByCity(city);
-        const forecastData = await ForecastApiService.getForcastByCoordinates(data.coord.lat, data.coord.lon)
-        dispatch(addforecastData(forecastData))
+        const forecastData = await ForecastApiService.getForcastByCoordinates(
+          data.coord.lat,
+          data.coord.lon
+        );
+        dispatch(addforecastData(forecastData));
         dispatch(addWeatherData(data));
       } catch (err) {
         alert(err);
@@ -53,36 +56,44 @@ const TopCities = () => {
           <h2 className="text-base font-semibold mb-2">Popular Cities</h2>
           <table className="w-full text-sm text-left text-gray-500">
             <tbody>
-              {topCityData.map((data, index) => (
-                <tr className="bg-white" key={index}>
-                  <td className="px-2 py-2">
-                    <img
-                      src={`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
-                      alt={`${data.name} icon`}
-                      width={36}
-                      height={36}
-                    />
-                  </td>
-                  <td className="px-2 py-2">{data.name}</td>
-                  <td className="px-2 py-2">{data.weather[0].main}</td>
-                  <td
-                    className={`${!weatherData || weatherData.id === data.id} ? "cursor-not-allowed": ""}`}
-                  >
-                    <button
-                      onClick={() => {
-                        if (weatherData && weatherData.id !== data.id) {
-                          handleCityWeather(data.name);
-                        } else if (!weatherData) {
-                          handleCityWeather(data.name);
-                        }
-                      }}
-                      className="bg-blue-700 hover:bg-blue-800 transition-colors duration-200 p-2 rounded text-white hover:text-gray-100"
-                    >
-                      <FaArrowRight />
-                    </button>
-                  </td>
-                </tr>
-              ))}
+              {topCityData.length > 0 ? (
+                <>
+                  {topCityData.map((data, index) => (
+                    <tr className="bg-white" key={index}>
+                      <td className="px-2 py-2">
+                        <img
+                          src={`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
+                          alt={`${data.name} icon`}
+                          width={36}
+                          height={36}
+                        />
+                      </td>
+                      <td className="px-2 py-2">{data.name}</td>
+                      <td className="px-2 py-2">{data.weather[0].main}</td>
+                      <td
+                        className={`${!weatherData || weatherData.id === data.id} ? "cursor-not-allowed": ""}`}
+                      >
+                        <button
+                          onClick={() => {
+                            if (weatherData && weatherData.id !== data.id) {
+                              handleCityWeather(data.name);
+                            } else if (!weatherData) {
+                              handleCityWeather(data.name);
+                            }
+                          }}
+                          className="bg-blue-700 hover:bg-blue-800 transition-colors duration-200 p-2 rounded text-white hover:text-gray-100"
+                        >
+                          <FaArrowRight />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </>
+              ) : (
+                <>
+                <p className="text-black">No data available</p>
+                </>
+              )}
             </tbody>
           </table>
         </div>

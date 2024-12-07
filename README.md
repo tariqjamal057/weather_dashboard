@@ -18,8 +18,8 @@ A modern weather application built with React that provides real-time weather in
 [![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Chart.js](https://img.shields.io/badge/Chart.js-FF6384?style=for-the-badge&logo=chart.js&logoColor=white)](https://www.chartjs.org/)
 [![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white)](https://axios-http.com/)
-[![CryptoJS](https://img.shields.io/badge/CryptoJS-000000?style=for-the-badge&logo=crypto.js&logoColor=white)](https://cryptojs.gitbook.io/)
-[![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
+[![CryptoJS](https://img.shields.io/badge/CryptoJS-e3f30c?style=for-the-badge&logo=crypto.js&logoColor=white)](https://cryptojs.gitbook.io/)
+[![Express.js](https://img.shields.io/badge/Express.js-3c873a?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
 [![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
 
 

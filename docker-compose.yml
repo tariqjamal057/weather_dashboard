@@ -3,13 +3,12 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
     env_file:
       - .env
-    ports:
-      - "80:80"
-    environment:
-      - NODE_ENV=production
-    restart: unless-stopped
+    volumes:
+      - .:/app
 
   server:
     build:
@@ -20,4 +19,4 @@ services:
     env_file:
       - .env
     volumes:
-      - ./server:/server
+      - ./server:/app

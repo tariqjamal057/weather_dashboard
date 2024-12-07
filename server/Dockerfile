@@ -1,15 +1,13 @@
 FROM node:20-alpine
 
-WORKDIR /server
+WORKDIR /app
 
 COPY package*.json .
 
-RUN npm install
-
-RUN npm install nodemon
+RUN npm install --no-optional
 
 COPY . .
 
 EXPOSE 3000
 
-CMD ["npm", "run", "dev"]
+CMD ["npx","nodemon", "server.js"]

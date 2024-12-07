@@ -1,3 +1,5 @@
+import CryptoJS from "crypto-js";
+
 export const formatDateTime = (dateStr) => {
   const date = new Date(dateStr);
   return {
@@ -24,4 +26,19 @@ export const calculateDaylight = (sunrise, sunset) => {
     daylight: daylightMs / (60 * 60 * 1000),
     night: nightMs / (60 * 60 * 1000),
   };
+};
+
+export const encryptData = (plainData) => {
+  return CryptoJS.AES.encrypt(
+    JSON.stringify(plainData),
+    import.meta.env.VITE_CRYTOJS_SECRET_CODE
+  ).toString();
+};
+
+export const decryptData = (encryptedData) => {
+  const decryptedData = CryptoJS.AES.decrypt(
+    encryptedData,
+    import.meta.env.VITE_CRYTOJS_SECRET_CODE
+  ).toString(CryptoJS.enc.Utf8);
+  return JSON.parse(decryptedData);
 };

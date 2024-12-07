@@ -1,20 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
-import CryptoJS from "crypto-js";
+import { decryptData, encryptData } from "../../../utils";
 
 const initialState = {
   cities: (() => {
     try {
       const storedData = localStorage.getItem("searchedCities");
-      if (!storedData) return [];
+      if (!storedData) return {};
 
-      const decryptedData = CryptoJS.AES.decrypt(
-        storedData,
-        import.meta.env.VITE_CRYTOJS_SECRET_CODE
-      ).toString(CryptoJS.enc.Utf8);
-      return JSON.parse(decryptedData) || [];
+      return decryptData(storedData) || {};
     } catch (error) {
       alert("Error loading cities from localStorage:", error);
-      return [];
+      return {};
     }
   })(),
 };
@@ -25,21 +21,16 @@ const citiesSlice = createSlice({
   reducers: {
     addCity: (state, action) => {
       const city = action.payload;
-      if (!state.cities.includes(city)) {
-        state.cities.push(city);
-        try {
-          const encryptedData = CryptoJS.AES.encrypt(
-            JSON.stringify(state.cities),
-            import.meta.env.VITE_CRYTOJS_SECRET_CODE
-          ).toString();
-          localStorage.setItem("searchedCities", encryptedData);
-        } catch (error) {
-          alert("Error saving cities to localStorage:", error);
-        }
+      state.cities[city] = (state.cities[city] || 0) + 1;
+      try {
+        const encryptedData = encryptData(state.cities);
+        localStorage.setItem("searchedCities", encryptedData);
+      } catch (error) {
+        alert("Error saving cities to localStorage:", error);
       }
     },
     clearCities: (state) => {
-      state.cities = [];
+      state.cities = {};
       localStorage.removeItem("searchedCities");
     },
   },

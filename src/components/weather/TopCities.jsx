@@ -5,6 +5,8 @@ import WeatherApiService from "../../api/weather";
 import { addWeatherData } from "../../redux/slices/weather/weather";
 import ForecastApiService from "../../api/forecast";
 import { addforecastData } from "../../redux/slices/weather/forecast";
+import { IoReload } from "react-icons/io5";
+import { Link } from "react-router";
 
 const TopCities = () => {
   const cities = useSelector((state) => state.cities.cities);
@@ -28,22 +30,50 @@ const TopCities = () => {
     }
   };
 
-  useEffect(() => {
-    const fetchWeatherData = async () => {
-      try {
-        if (cities.length > 0) {
-          const weatherPromises = cities
-            .slice(-5)
-            .map((city) => WeatherApiService.getWeatherByCity(city));
+  const fetchWeatherData = async (forceReload = false) => {
+    try {
+      if (Object.keys(cities).length > 0) {
+        const cachedData = localStorage.getItem("topCitiesWeather");
+        const lastFetchTime = localStorage.getItem("lastFetchTime");
+        const currentTime = new Date().getTime();
 
-          const results = await Promise.all(weatherPromises);
-          setTopCityData(results);
+        const currentTopCities = Object.entries(cities)
+          .sort(([, a], [, b]) => b - a)
+          .slice(0, 5)
+          .map(([city]) => city);
+
+        const cachedCitiesList = cachedData
+          ? JSON.parse(cachedData).map((city) => city.name)
+          : [];
+
+        // Add forceReload to update conditions
+        const needsUpdate =
+          forceReload ||
+          !cachedData ||
+          currentTime - parseInt(lastFetchTime) >= 3600000 ||
+          !currentTopCities.every((city) => cachedCitiesList.includes(city));
+
+        if (!needsUpdate) {
+          setTopCityData(JSON.parse(cachedData));
+          return;
         }
-      } catch (error) {
-        alert("Error fetching weather data: ", error);
-      }
-    };
 
+        const weatherPromises = currentTopCities.map((city) =>
+          WeatherApiService.getWeatherByCity(city)
+        );
+
+        const results = await Promise.all(weatherPromises);
+        setTopCityData(results);
+
+        localStorage.setItem("topCitiesWeather", JSON.stringify(results));
+        localStorage.setItem("lastFetchTime", currentTime.toString());
+      }
+    } catch (error) {
+      alert("Error fetching weather data: ", error);
+    }
+  };
+
+  useEffect(() => {
     fetchWeatherData();
 
     return () => {};
@@ -53,7 +83,15 @@ const TopCities = () => {
     <div className="relative min-h-42 lg:min-h-[calc((100vh-145px)/2.15)] bg-white rounded-lg col-span-12 lg:col-span-3 lg:order-2 overflow-hidden flex justify-start sm:col-start-7 sm:col-end-13 p-4 text-blue-700">
       <div className="relative flex flex-col justify-between w-full">
         <div className="">
-          <h2 className="text-base font-semibold mb-2">Popular Cities</h2>
+          <div className="flex justify-between items-center">
+            <h2 className="text-base font-semibold mb-2">Popular Cities</h2>
+            <div className="flex justify-between items-center gap-x-2">
+              <button onClick={() => fetchWeatherData(true)}>
+                <IoReload />
+              </button>
+              <Link to={"/saved"}>view all</Link>
+            </div>
+          </div>
           <table className="w-full text-sm text-left text-gray-500">
             <tbody>
               {topCityData.length > 0 ? (

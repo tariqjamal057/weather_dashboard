@@ -18,7 +18,7 @@ const RecentForcast = () => {
               {forecastData.list.map((data, index) => (
                 <div
                   key={index}
-                  className="w-32 h-40 lg:48 flex-shrink-0 bg-blue-50 rounded shadow-lg hover:shadow-2xl hover:bg-blue-100 transition-all duration-500 ease-in-out flex flex-col items-center justify-center"
+                  className="text-white w-32 h-40 lg:48 flex-shrink-0 bg-blue-700 rounded shadow-lg hover:shadow-2xl hover:bg-blue-500 transition-all duration-500 ease-in-out flex flex-col items-center justify-center"
                 >
                   <img
                     src={`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}

@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { decryptData, encryptData } from "../../../utils";
 
 const initialState = {
   cities: (() => {
@@ -7,7 +6,7 @@ const initialState = {
       const storedData = localStorage.getItem("searchedCities");
       if (!storedData) return {};
 
-      return decryptData(storedData) || {};
+      return JSON.parse(storedData) || {};
     } catch (error) {
       alert("Error loading cities from localStorage:", error);
       return {};
@@ -23,8 +22,7 @@ const citiesSlice = createSlice({
       const city = action.payload;
       state.cities[city] = (state.cities[city] || 0) + 1;
       try {
-        const encryptedData = encryptData(state.cities);
-        localStorage.setItem("searchedCities", encryptedData);
+        localStorage.setItem("searchedCities", JSON.stringify(state.cities));
       } catch (error) {
         alert("Error saving cities to localStorage:", error);
       }

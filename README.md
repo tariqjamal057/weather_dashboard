@@ -2,6 +2,7 @@
 
 A modern weather application built with React that provides real-time weather information and forecasts for cities worldwide. The app features an intuitive interface with interactive weather charts, search history tracking, and smart caching for optimal performance. Users can search for any city, view detailed weather metrics, and access 5-day forecasts with hourly breakdowns. The app securely stores search history using encryption and implements responsive design for seamless usage across all devices.
 
+**Access the website using this link: `https://reactjs-weather-app-sable.vercel.app`**
 
 ## Features
 - 🔍 Search and track weather for any city
@@ -11,6 +12,10 @@ A modern weather application built with React that provides real-time weather in
 - 📱 Responsive design for all devices
 - 🗃️ Local storage caching for improved performance
 - 🔐 Search history encryption for security
+
+## TODO
+- 🔑 Authentioation
+- 📄 Saved Location Page UI
 
 ## Tech Stack
 [![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=white)](https://react.dev/)
@@ -77,4 +82,3 @@ npm run dev
     ```bash
     nodemon server/app.js
     ```
-

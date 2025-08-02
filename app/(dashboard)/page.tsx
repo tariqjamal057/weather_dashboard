@@ -45,7 +45,7 @@ export default function Home() {
         </div>
       </div>
       <div className="bg-white p-4 shadow-md rounded w-full h-full">
-        <h2 className="text-lg font-semibold">Today's Highlight</h2>
+        <h2 className="text-lg font-semibold">Today&apos;s Highlight</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           <WeatherCard
             className="order-1 md:order-1"

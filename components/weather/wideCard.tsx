@@ -1,9 +1,8 @@
-import React from "react";
-import { LuWind } from "react-icons/lu";
+import React, { JSX } from "react";
 
 type WeatherCardProps = {
   className?: string;
-  icon: any;
+  icon: JSX.Element;
   header: string;
   timing: string;
 };

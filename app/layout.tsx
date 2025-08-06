@@ -33,9 +33,9 @@ export default function RootLayout({
         <Provider>
           <div className="flex h-screen bg-gray-50 p-4 text-black ">
             <SideBar />
-            <div className="md:ms-4 w-full flex flex-col">
+            <div className="md:ms-4 w-full flex flex-col gap-y-4">
               <Header />
-              <div className="bg-white shadow-md rounded ">{children}</div>
+              <div className="rounded flex-1">{children}</div>
             </div>
           </div>
         </Provider>

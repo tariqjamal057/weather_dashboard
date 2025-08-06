@@ -23,22 +23,22 @@ const MenuItemList: MenuItem[] = [
   },
   {
     title: "Saved Locations",
-    href: "/",
+    href: "/saved-locations",
     icon: <CgCopy />,
   },
   {
     title: "Notifications",
-    href: "/",
+    href: "/notifications",
     icon: <IoMdNotificationsOutline />,
   },
   {
     title: "Settings",
-    href: "/",
+    href: "/settings",
     icon: <CiSettings />,
   },
   {
     title: "Help",
-    href: "/",
+    href: "/help",
     icon: <CiCircleQuestion />,
   },
 ];

@@ -6,6 +6,7 @@ import { LuWind } from "react-icons/lu";
 import { PiDrop } from "react-icons/pi";
 import { RiSunFoggyLine } from "react-icons/ri";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
+import DynamicMap from "@/components/weather/DynamicMap";
 
 export default function Home() {
   const currentDate = new Date();
@@ -19,7 +20,7 @@ export default function Home() {
   });
 
   return (
-    <div className="grid place-items-center bg-gray-100 grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="grid place-items-center grid-cols-1 md:grid-cols-2 gap-4">
       <div className="bg-white p-4 shadow-md rounded w-full h-full flex flex-col">
         <div className="flex justify-between">
           <div className="flex items-center justify-center gap-x-1 p-2 bg-blue-100 rounded-full text-sm">
@@ -89,8 +90,10 @@ export default function Home() {
           />
         </div>
       </div>
-      <div className="bg-white p-4 shadow-md rounded w-full h-full">Card 3</div>
-      <div className="bg-white p-4 shadow-md rounded w-full h-full">Card 4</div>
+      <div className="bg-white shadow-md rounded w-full h-full min-h-56 md:min-h-80 overflow-hidden">
+        <DynamicMap />
+      </div>
+      <div className="bg-white p-4 shadow-md rounded w-full h-full"></div>
     </div>
   );
 }

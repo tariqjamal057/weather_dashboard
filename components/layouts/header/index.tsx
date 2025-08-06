@@ -11,7 +11,7 @@ export const Header = () => {
   const { setOpen } = useSidebar();
 
   return (
-    <nav className="flex md:items-center flex-col md:flex-row justify-between gap-y-4 mb-4">
+    <nav className="flex md:items-center flex-col md:flex-row justify-between gap-y-4">
       <div className="flex gap-2 md:items-center">
         {/* Hamburger for mobile */}
         <button

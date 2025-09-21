@@ -7,6 +7,7 @@ import { PiDrop } from "react-icons/pi";
 import { RiSunFoggyLine } from "react-icons/ri";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import DynamicMap from "@/components/weather/DynamicMap";
+import Forecast from "@/components/weather/Forecast";
 
 export default function Home() {
   const currentDate = new Date();
@@ -93,7 +94,7 @@ export default function Home() {
       <div className="bg-white shadow-md rounded w-full h-full min-h-56 md:min-h-80 overflow-hidden">
         <DynamicMap />
       </div>
-      <div className="bg-white p-4 shadow-md rounded w-full h-full"></div>
+      <Forecast />
     </div>
   );
 }
